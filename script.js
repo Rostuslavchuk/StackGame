@@ -402,14 +402,22 @@ function DrawBlock(blockSize, color, posY, startBlockDirections, overlap = null)
 }
 function MoveBlock(block, startBlockDirections, blockWidth) {
     movingBlock = block;
-    moveDirection = { x: startBlockDirections.x ? 0.075 : 0, z: startBlockDirections.z ? 0.075 : 0 };
-    
+    moveDirection = { x: startBlockDirections.x ? 0.09 : 0, z: startBlockDirections.z ? 0.09 : 0 };
+
+    let depth;
+    if(blockWidth < 1.5){
+        depth = blockWidth * 4;
+    }
+    else {
+        depth = blockWidth * 2;
+    }
+
     moveLimitX = {
       min: block.position.x,
-      max: block.position.x + (blockWidth * 2) + 2
+      max: block.position.x + depth + 2
     };
     moveLimitZ = {
       min: block.position.z,
-      max: block.position.z + (blockWidth * 2) + 2
+      max: block.position.z + depth + 2
     };
 }
