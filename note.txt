@@ -1,0 +1,96 @@
+
+Цей рядок створює камеру, яка "бачить" 3D-сцену, наче людське око.
+45 — наскільки широко вона бачить (чим більше число, тим ширше).
+window.innerWidth / window.innerHeight — щоб зображення не було розтягнуте на екрані.
+0.1 — найменша відстань, з якої камера бачить об'єкти.
+1000 — найбільша відстань, до якої вона ще бачить об'єкти.
+
+
+camera.position.set(10, 10, 20);
+Ставить камеру в точку (10, 10, 20) — це її положення в просторі:
+x = 10 (вправо),
+y = 10 (вгору),
+z = 20 (вперед від центру сцени)
+тобто з цього можна зрозуміти шо в нас графік розташований
+z - відстань до нас 
+y - висота
+x - ширина 
+
+camera.lookAt(0, 0, 0);
+Камера дивиться на центр сцени, тобто на точку (0, 0, 0).
+
+Якщо сцена — це кімната, то камера стоїть у кутку (10, 10, 20) і дивиться прямо на центр кімнати.
+
+
+
+Ці рядки створюють рендерер — тобто "екран", на якому відображається 3D-сцена. Ось просте пояснення по частинах
+const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0x000000, 0); 
+document.body.appendChild(renderer.domElement);
+
+const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+WebGLRenderer — створює рендерер на базі WebGL (швидкий і потужний).
+antialias: true — згладжування країв об'єктів, щоб вони не були «зубчастими».
+alpha: true — дозволяє зробити фон прозорим, якщо треба.
+
+renderer.setSize(window.innerWidth, window.innerHeight);
+Встановлює розмір рендерера на весь екран.
+
+renderer.setClearColor(0x000000, 0);
+0x000000 — чорний колір фону.
+0 — прозорість (0 = повністю прозорий)
+
+document.body.appendChild(renderer.domElement);
+Додає <canvas> елемент (який створив рендерер) в HTML, щоб усе стало видимим на сторінці
+
+
+
+
+const geometry = new THREE.BoxGeometry(blockWidth, blockHeight, blockDepth);
+Створює форму блока — звичайний прямокутний паралелепіпед.
+Розміри: ширина, висота, глибина
+
+
+new THREE.MeshPhongMaterial({ color: new THREE.Color(hsl(${i * 30}, 70%, 60%)) })
+Створює матеріал з кольором у форматі HSL.
+i * 30 означає, що кожен блок має інший відтінок кольору (червоний, оранжевий, жовтий, зелений, і т.д.).
+Це робить блоки різнокольоровими.
+
+
+const block = new THREE.Mesh(geometry, material); - поєднює колір з розмірами
+
+scene.add(block); - додає блок
+
+
+запуск 
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
+animate();
+
+
+освітлення 
+Ці два рядки додають освітлення в сцену, щоб об'єкти (наприклад, блоки) були видимими і об'ємними. Без світла MeshPhongMaterial буде просто чорним.
+
+AmbientLight — м’яке загальне світло
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+
+Це навколишнє світло, яке освітлює все рівномірно, без напрямку.
+Воно не створює тіней, просто трохи підсвічує сцену.
+0xffffff — біле світло.
+0.5 — інтенсивність (від 0 до 1).
+
+
+DirectionalLight — спрямоване світло (як сонце)
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(5, 10, 7);
+scene.add(directionalLight);
+
+Це напрямлене світло, як від сонця чи лампи.
+Освітлює об'єкти з певного боку.
+Дає блиск, об'єм, реалістичність і може створювати тіні (якщо ввімкнути).
+.position.set(...) задає, з якого боку світло падає.

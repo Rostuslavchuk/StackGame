@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Stack</title>
+</head>
+<body>
+
+    <div class="preview" id="preview">
+        <span class="title-counter" id="title-counter" >Stack Game</span> 
+        <p>Press SPACE to play</p>
+    </div>
+
+    <div class="module__finish display__none">
+        <div class="module__finish-content">
+            <div class="finish-content__score">
+                <h2>Score</h2>
+                <span id="score">0</span>
+            </div>
+            <div class="finish-content__best">
+                <h2>Best</h2>
+                <span id="best">0</span>
+            </div>
+            <div class="finish-content__replay">
+                <button type="button" class="replay" id="replay" >
+                    <i class="fa-solid fa-rotate-right"></i>    
+                    <span>Replay</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="./script.js" defer type="module" ></script>
+</body>
+</html>
