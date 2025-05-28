@@ -29,7 +29,7 @@ let isFalling = false;
 let movingBlock;
 let previousBlock;
 
-let moveDirection = { x: 0.2, z: 0 };
+let moveDirection = { x: 0.1, z: 0 };
 let moveLimitX = { min: 0, max: 0 };
 let moveLimitZ = { min: 0, max: 0 };
 let startBlockDirections = {x: false, z: false};
@@ -399,7 +399,7 @@ function DrawBlock(blockSize, color, posY, startBlockDirections, overlap = null)
 }
 function MoveBlock(block, startBlockDirections, blockWidth) {
     movingBlock = block;
-    moveDirection = { x: startBlockDirections.x ? 0.2 : 0, z: startBlockDirections.z ? 0.2 : 0 };
+    moveDirection = { x: startBlockDirections.x ? 0.1 : 0, z: startBlockDirections.z ? 0.1 : 0 };
 
     moveLimitX = {
       min: block.position.x,
