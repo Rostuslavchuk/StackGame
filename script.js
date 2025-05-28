@@ -398,7 +398,7 @@ function DrawBlock(blockSize, color, posY, startBlockDirections, overlap = null)
 }
 function MoveBlock(block, startBlockDirections, blockWidth) {
     movingBlock = block;
-    moveDirection = { x: startBlockDirections.x ? 0.09 : 0, z: startBlockDirections.z ? 0.09 : 0 };
+    moveDirection = { x: startBlockDirections.x ? 0.1 : 0, z: startBlockDirections.z ? 0.1 : 0 };
 
     moveLimitX = {
       min: block.position.x,
