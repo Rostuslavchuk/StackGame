@@ -29,7 +29,7 @@ let isFalling = false;
 let movingBlock;
 let previousBlock;
 
-let moveDirection = { x: 0.1, z: 0 };
+let moveDirection = { x: 0.2, z: 0 };
 let moveLimitX = { min: 0, max: 0 };
 let moveLimitZ = { min: 0, max: 0 };
 let startBlockDirections = {x: false, z: false};
@@ -88,12 +88,13 @@ function animate() {
     }
 
     fallingBlocks.forEach((block, index) => {
-        block.position.y -= 0.2;
-        if (block.position.y < -10) {
+        block.position.y -= 0.5; // було 0.2
+        if (block.position.y < -20) { // було -10
             scene.remove(block);
             fallingBlocks.splice(index, 1);
         }
     });
+    
 
 
     if (camera.position.y < cameraTargetY) {
@@ -398,7 +399,7 @@ function DrawBlock(blockSize, color, posY, startBlockDirections, overlap = null)
 }
 function MoveBlock(block, startBlockDirections, blockWidth) {
     movingBlock = block;
-    moveDirection = { x: startBlockDirections.x ? 0.1 : 0, z: startBlockDirections.z ? 0.1 : 0 };
+    moveDirection = { x: startBlockDirections.x ? 0.2 : 0, z: startBlockDirections.z ? 0.2 : 0 };
 
     moveLimitX = {
       min: block.position.x,
